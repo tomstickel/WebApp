@@ -12,6 +12,11 @@ export class EventsListComponent implements OnInit {
     name: 'Gianna Stickel'
   }
 
+  handleEventClicked(xdata: string){
+    console.log('received', xdata);
+  }
+
+
   constructor() { }
 
   ngOnInit(): void {

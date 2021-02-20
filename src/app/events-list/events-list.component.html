@@ -1,4 +1,5 @@
 <p>events-list works!</p>
 <hr>
-<app-eventthumbnail [eventInput]="eventList"></app-eventthumbnail>
+<app-eventthumbnail (eventClick)="handleEventClicked($event)" 
+    [eventInput]="eventList"></app-eventthumbnail>
 
