@@ -19,6 +19,11 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { StoreModule } from '@ngrx/store';
+import { ProductComponent } from './product/product.component';
+import { EffectsModule } from '@ngrx/effects';
+
+import { addProductReducer } from './reducers/product.reducer';
 
 @NgModule({
   declarations: [
@@ -28,7 +33,8 @@ import { MatButtonModule } from '@angular/material/button';
     EventsListComponent,
     EventthumbnailComponent,
     MainComponent,
-    DialogBoxComponent
+    DialogBoxComponent,
+    ProductComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +46,10 @@ import { MatButtonModule } from '@angular/material/button';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatInputModule
+    MatInputModule,
+    //StoreModule.forRoot({}, {}),
+    StoreModule.forRoot({product: addProductReducer}),
+    EffectsModule.forRoot([])
   ],
   providers: [],
   bootstrap: [AppComponent]
