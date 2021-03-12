@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -24,6 +25,10 @@ import { ProductComponent } from './product/product.component';
 import { EffectsModule } from '@ngrx/effects';
 
 import { addProductReducer } from './reducers/product.reducer';
+import { ProductsComponent } from './products/products.component';
+import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { AppData } from './app.data';
+
 
 @NgModule({
   declarations: [
@@ -34,10 +39,12 @@ import { addProductReducer } from './reducers/product.reducer';
     EventthumbnailComponent,
     MainComponent,
     DialogBoxComponent,
-    ProductComponent
+    ProductComponent,
+    ProductsComponent
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
@@ -49,7 +56,8 @@ import { addProductReducer } from './reducers/product.reducer';
     MatInputModule,
     //StoreModule.forRoot({}, {}),
     StoreModule.forRoot({product: addProductReducer}),
-    EffectsModule.forRoot([])
+    EffectsModule.forRoot([]),
+    InMemoryWebApiModule.forRoot(AppData, { delay: 1000 }),
   ],
   providers: [],
   bootstrap: [AppComponent]
