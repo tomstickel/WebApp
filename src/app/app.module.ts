@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -13,13 +13,16 @@ import { MainComponent } from './main/main.component';
 import { DialogBoxComponent } from './dialog-box/dialog-box.component';
 
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+
 import { MatButtonModule } from '@angular/material/button';
+import { MatSelectModule  } from '@angular/material/select';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { StoreModule } from '@ngrx/store';
 import { ProductComponent } from './product/product.component';
 import { EffectsModule } from '@ngrx/effects';
@@ -40,7 +43,8 @@ import { AppData } from './app.data';
     MainComponent,
     DialogBoxComponent,
     ProductComponent,
-    ProductsComponent
+    ProductsComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -51,14 +55,19 @@ import { AppData } from './app.data';
     MatTableModule,
     MatDialogModule,
     MatFormFieldModule,
-    MatInputModule,
     MatButtonModule,
     MatInputModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatAutocompleteModule,
+    MatSelectModule,
     //StoreModule.forRoot({}, {}),
     StoreModule.forRoot({product: addProductReducer}),
     EffectsModule.forRoot([]),
     InMemoryWebApiModule.forRoot(AppData, { delay: 1000 }),
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [],
   bootstrap: [AppComponent]
 })

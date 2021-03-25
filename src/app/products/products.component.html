@@ -1,1 +1,87 @@
-<p>products works!</p>
+<!-- <p>products works!</p>
+<div *ngIf="products$ | async as products">
+    <table>
+        <tr *ngFor="let product of products">
+            <td>{{ product.productName}}</td>
+        </tr>
+    </table>
+</div> -->
+    <!--ngIf  products$ -->
+
+
+    <!-- *ngIf="vm$ | async as vm"-->
+    <div class="card-body"
+       >
+        <div class="container">
+        <div class="row justify-content-between">
+            <div class="col-3">
+            <select class="form-control">
+                    (change)="onSelected('t')">
+                <option value="0">- Display All -</option>
+                <option *ngFor="let category of categories$ | async"
+                        [value]="category.id">{{ category.name }}</option>
+            </select>
+            </div>
+            <div class="col-2">
+            <button type="button"
+                    class="btn btn-outline-secondary"
+                    (click)="onAdd()">Add Product</button>
+            </div>
+        </div>
+        </div>
+
+        <!-- productsSimpleFilter$ -->
+
+        <div class="table-responsive">
+            <table class="table mb-0"
+            
+                *ngIf="products$ | async as products">
+            <thead>
+                <tr>
+                <th>Product</th>
+                <th>Code</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>In Stock</th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let product of products">
+                <tr>
+                <td>{{ product.productName }}</td>
+                <td>{{ product.productCode }}</td>
+                <td>{{ product.category }}</td>
+                <td>{{ product.price | currency:"USD":"symbol":"1.2-2" }}</td>
+                <td>{{ product.quantityInStock }}</td>
+                </tr>
+            </tbody>
+            </table>
+        </div>
+
+
+    </div>
+
+
+<div>
+
+    <mat-form-field>
+      <input matInput placeholder="Search" aria-label="State" [matAutocomplete]="auto" [formControl]="searchMoviesCtrl">
+      <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+        <mat-option *ngIf="isLoading" class="is-loading">Loading...</mat-option>
+        <ng-container *ngIf="!isLoading">
+          <mat-option *ngFor="let movie of filteredMovies" [value]="movie.Title">
+            <span><b>{{movie.Title}}</b> ({{movie.Year}})</span>
+          </mat-option>
+        </ng-container>
+      </mat-autocomplete>
+    </mat-form-field>
+  
+    <br>
+  
+  <ng-container *ngIf="errorMsg; else elseTemplate">
+    {{errorMsg}}
+  </ng-container>
+  <ng-template #elseTemplate>
+    <h5>Selected Value: {{searchMoviesCtrl.value}}</h5>
+  </ng-template>
+  
+  </div>
